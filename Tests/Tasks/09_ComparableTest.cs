@@ -1,8 +1,8 @@
-using NUnit.Framework;
 using System;
+using NUnit.Framework;
 using Objects;
 
-namespace Tests
+namespace Tests.Tasks
 {
     public class ComparableTest
     {
@@ -15,12 +15,12 @@ namespace Tests
             {
                 triangles[i] = Triangle.GenerateRandomFigure(rn);
             }
-
+            
             Array.Sort(triangles);
             Array.Reverse(triangles);
-            foreach (var item in triangles)
+            foreach (var figure in triangles)
             {
-                item.InfoToConsole();
+                Console.WriteLine(figure);
             }
         }
     }

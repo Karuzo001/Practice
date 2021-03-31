@@ -38,16 +38,26 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Enumerator\FigureEnumerator.cs" />
-        <Compile Include="Enumerator\Figures.cs" />
-        <Compile Include="Figures\BaseFigure.cs" />
-        <Compile Include="Figures\Circle.cs" />
-        <Compile Include="Figures\Figure.cs" />
-        <Compile Include="Figures\Rectangle.cs" />
-        <Compile Include="Figures\Triangle.cs" />
-        <Compile Include="ICloneable.cs" />
-        <Compile Include="Line.cs" />
-        <Compile Include="Point.cs" />
+        <Compile Include="Collections\AnalyzerCollectionOfNumbers.cs" />
+        <Compile Include="Collections\FiguresCollection.cs" />
+        <Compile Include="Collections\MyQueue.cs" />
+        <Compile Include="Collections\UniqueCollection.cs" />
+        <Compile Include="Figures\Enumerator\FigureEnumerator.cs" />
+        <Compile Include="Figures\Enumerator\Figures.cs" />
+        <Compile Include="Figures\Figures\BaseFigure.cs" />
+        <Compile Include="Figures\Figures\Circle.cs" />
+        <Compile Include="Figures\Figures\Figure.cs" />
+        <Compile Include="Figures\Figures\Rectangle.cs" />
+        <Compile Include="Figures\Figures\Triangle.cs" />
+        <Compile Include="Figures\ICloneable.cs" />
+        <Compile Include="Figures\Line.cs" />
+        <Compile Include="Figures\Point.cs" />
+        <Compile Include="MyDelegate.cs" />
+        <Compile Include="ParametersAndType.cs" />
+        <Compile Include="People\IGetHashCode.cs" />
+        <Compile Include="People\Person.cs" />
+        <Compile Include="People\PersonCatalog.cs" />
+        <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

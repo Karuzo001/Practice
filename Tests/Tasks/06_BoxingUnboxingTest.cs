@@ -1,15 +1,14 @@
-using NUnit.Framework;
 using System;
 using System.Diagnostics;
+using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Tasks
 {
     public class BoxingUnboxingTest
     {
         [Test]
         public void TimeTest()
         {
-            //  if (!uint.TryParse(Console.ReadLine(), out var length)) return;
             const int length = 100000;
             var box = new object[length];
             var number = new int[box.Length];

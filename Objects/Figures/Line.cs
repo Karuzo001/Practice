@@ -24,15 +24,16 @@ namespace Objects
             return Math.Sqrt(Math.Pow((point2.X - point1.X), 2) + Math.Pow((point2.Y - point1.Y), 2));
         }
 
-        public void InfoToConsole()
+        public override string ToString()
         {
-            Console.WriteLine("Line");
+            var info = GetType()+"\n";
             for (var index = 0; index < 2; index++)
             {
-                Console.WriteLine("Point{0}: {1}", index, _points[index]);
+                info += $"Point{index}: {_points[index]}\n";
             }
 
-            Console.WriteLine("Length: {0:0.###}\n", Length());
+            info += $"Length: {Length():0.###}\n";
+            return info;
         }
     }
 }

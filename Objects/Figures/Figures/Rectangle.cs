@@ -15,7 +15,7 @@ namespace Objects
             SidesLength = GetSidesLength(Points);
         }
 
-        private Rectangle(IReadOnlyList<Point> points) : base(points)
+        public Rectangle(IReadOnlyList<Point> points) : base(points)
         {
         }
 

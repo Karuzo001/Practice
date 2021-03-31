@@ -8,7 +8,6 @@ namespace Objects
         private static readonly Random Rn = new Random();
         public abstract double Area();
         public abstract double Perimeter();
-        public abstract void InfoToConsole();
 
         private enum NamesFigures
         {

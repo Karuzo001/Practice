@@ -30,17 +30,18 @@ namespace Objects
             return SidesLength.Sum();
         }
 
-        public override void InfoToConsole()
+        public override string ToString()
         {
             if (Points == null) throw new ArgumentNullException(nameof(Points));
-            Console.WriteLine(GetType());
+            var info = GetType()+"\n";
             for (var index = 0; index < Points.Length; index++)
             {
-                Console.WriteLine("Point{0}: {1}", index, Points[index]);
+                info += $"Point{index}: {Points[index]}\n";
             }
 
-            Console.WriteLine("Area: {0:0.###}", Area());
-            Console.WriteLine("Perimeter: {0:0.###}\n", Perimeter());
+            info += $"Area: {Area():0.###}\n" +
+                    $"Perimeter: {Perimeter():0.###}\n";
+            return info;
         }
 
         protected static double[] GetSidesLength(IReadOnlyList<Point> points)
