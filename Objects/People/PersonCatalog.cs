@@ -41,7 +41,6 @@ namespace Objects.People
             _database.Remove(person);
         }
 
-
         private static string Search(Dictionary<Person, string> people, Person person)
         {
             return people.ContainsKey(person)

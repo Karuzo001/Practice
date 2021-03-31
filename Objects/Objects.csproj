@@ -52,9 +52,12 @@
         <Compile Include="Figures\ICloneable.cs" />
         <Compile Include="Figures\Line.cs" />
         <Compile Include="Figures\Point.cs" />
+        <Compile Include="IntExtentions.cs" />
         <Compile Include="MyDelegate.cs" />
         <Compile Include="ParametersAndType.cs" />
+        <Compile Include="People\HtmlExtention.cs" />
         <Compile Include="People\IGetHashCode.cs" />
+        <Compile Include="People\PeopleDatabase.cs" />
         <Compile Include="People\Person.cs" />
         <Compile Include="People\PersonCatalog.cs" />
         <Compile Include="Properties\Annotations.cs" />

@@ -5,9 +5,9 @@ namespace Objects.People
     public class Person : ICloneable<Person>
     {
         private static Random rn = new Random();
-        private string FullName { get; set; }
-        private DateTime BirthDay { get; }
-        private string PlaceOfBirth { get; }
+        public string FullName { get; private set; }
+        public DateTime BirthDay { get; }
+        public string PlaceOfBirth { get; }
         public string PassportId { get; }
         private readonly IGetHashCode _hashCode;
 
@@ -79,16 +79,16 @@ namespace Objects.People
             {
                 case 0:
                 {
-                    fullname = name[rn.Next(0, name.Length / 2 + 1)] + " " + lastname[rn.Next(0, lastname.Length)] +
-                               "ич " +
-                               surname[rn.Next(0, surname.Length)];
+                    fullname = surname[rn.Next(0, surname.Length)] +" "+ name[rn.Next(0, name.Length / 2 + 1)] + " " +
+                               lastname[rn.Next(0, lastname.Length)] +
+                               "ич";
                     break;
                 }
                 case 1:
                 {
-                    fullname = name[rn.Next(11, name.Length)] + " " + lastname[rn.Next(0, lastname.Length)] +
-                               "на " +
-                               surname[rn.Next(0, surname.Length)] + "а";
+                    fullname = surname[rn.Next(0, surname.Length)] + "а " + name[rn.Next(11, name.Length)] + " " +
+                               lastname[rn.Next(0, lastname.Length)] +
+                               "на";
                     break;
                 }
             }
