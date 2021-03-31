@@ -1,20 +1,19 @@
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace Objects.People
 {
 	public static class HtmlExtentions
 	{
-		public static void HtmlDoc(this Person person)
+		public static void HtmlFile(this Person person)
 		{
-			HtmlDoc(new PeopleDatabase(person), person.FullName);
+			HtmlFile(new PeopleDatabase(person), person.FullName);
 		}
 
-		public static void HtmlDoc(this PeopleDatabase database, string name = "database")
+		public static void HtmlFile(this PeopleDatabase database, string name = "database")
 		{
 			var directory = Directory.GetCurrentDirectory();
-			var htmlDoc = @"<!DOCTYPE html>
+			var htmlFile = @"<!DOCTYPE html>
 <html>
 <head>
 	<style>
@@ -41,7 +40,7 @@ namespace Objects.People
 	</tr>";
 			foreach (var current in database.UsedPassportId)
 			{
-				htmlDoc += (@"<tr>
+				htmlFile += (@"<tr>
 			<td>" + database.Database[current].FullName + @"</td>
 			<td>" + database.Database[current].BirthDay.ToShortDateString() + @"</td>
 			<td>" + database.Database[current].PlaceOfBirth + @"</td>
@@ -49,14 +48,13 @@ namespace Objects.People
 			</tr>");
 			}
 
-			htmlDoc += @"</table>
+			htmlFile += @"</table>
 	         </body>
 		</html>";
 			using (var file = File.Open(directory + @"/" + @"/" + name + ".html",
 				FileMode.OpenOrCreate))
 			{
-				var code = Encoding.Default.GetBytes(htmlDoc);
-				object fileStream;
+				var code = Encoding.Default.GetBytes(htmlFile);
 				file.Write(code, 0, code.Length);
 			}
 		}

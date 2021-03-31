@@ -51,7 +51,7 @@ namespace Tests.Lessons
         public void HtmlPersonInfoTest()
         {
             var p = Person.GenerateRandomPerson();
-            p.HtmlDoc();
+            p.HtmlFile();
             using (var fileStream = File.OpenRead(Directory.GetCurrentDirectory() +
                                                   @"/" + p.FullName + ".html"))
             {
@@ -67,7 +67,7 @@ namespace Tests.Lessons
         {
             var database = new PeopleDatabase();
             FillDatabase(database);
-            database.HtmlDoc();
+            database.HtmlFile();
             using (var fileStream = File.OpenRead(Directory.GetCurrentDirectory() +
                                                   @"/database.html"))
             {
