@@ -7,7 +7,7 @@ using Objects.Collections;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class EventsTests
+    public class _14_EventsTests
     {
         [Test]
         public void NotifyPropertyChangedTest()

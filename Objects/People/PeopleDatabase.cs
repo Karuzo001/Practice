@@ -7,8 +7,8 @@ namespace Objects.People
 {
     public class PeopleDatabase
     {
-        public List<string> UsedPassportId;
-        public Dictionary<string, Person> Database = new Dictionary<string, Person>();
+        public List<string> UsedPassportId { get; private set; }
+        public Dictionary<string, Person> Database { get; private set; }
         public int Count => Database.Count();
 
         public override string ToString()
@@ -18,12 +18,15 @@ namespace Objects.People
 
         public PeopleDatabase()
         {
-            
+            Database = new Dictionary<string, Person>();
         }
+
         public PeopleDatabase(Person person)
         {
+            Database = new Dictionary<string, Person>();
             Add(person);
         }
+
         public void Add(Person person)
         {
             if (person == null) throw new ArgumentNullException(nameof(person));
@@ -64,14 +67,15 @@ namespace Objects.People
                 ? Database[passportId].ToString()
                 : "This person is not in the database.";
         }
+
         public void Save()
         {
             var dataDirectory = Directory.GetCurrentDirectory();
-            using (var fileWriter = new StreamWriter(dataDirectory + @"/PersonCatalog.txt"))
+            using (var fileWriter = new StreamWriter(dataDirectory + @"/PersonDatabase.txt"))
                 foreach (var person in Database)
                     fileWriter.WriteLine(person.Value);
-            Console.WriteLine("Directory: " + dataDirectory);
-        } 
+        }
+
         public void Load(string path)
         {
             using (var fileReader = new StreamReader(path))
@@ -88,14 +92,16 @@ namespace Objects.People
                         field[j] = value[1].Trim();
                         fileString = fileReader.ReadLine();
                     }
+
                     var person = new Person(
-                        field[0] ,Convert.ToDateTime(field[1]),
+                        field[0], Convert.ToDateTime(field[1]),
                         field[2],
                         field[3]
                     );
                     newDataBase.Add(person.PassportId, person);
                     fileString = fileReader.ReadLine();
                 }
+
                 Database = newDataBase;
             }
         }

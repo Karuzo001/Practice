@@ -4,12 +4,11 @@ namespace Objects.People
 {
     public class Person : ICloneable<Person>
     {
-        private static Random rn = new Random();
+        private static readonly Random Rn = new Random();
         public string FullName { get; private set; }
         public DateTime BirthDay { get; }
         public string PlaceOfBirth { get; }
         public string PassportId { get; }
-        private readonly IGetHashCode _hashCode;
 
         public Person()
         {
@@ -18,14 +17,8 @@ namespace Objects.People
             BirthDay = p.BirthDay;
             PlaceOfBirth = p.PlaceOfBirth;
             PassportId = p.PassportId;
-            _hashCode = p._hashCode;
         }
-
-        public Person(string fullName, DateTime birthDay, string placeOfBirth, string passportId) : this(fullName,
-            birthDay, placeOfBirth, passportId, new GetHashCodeDynamic())
-        {
-        }
-        public Person(string fullName, DateTime birthDay, string placeOfBirth, string passportId, IGetHashCode hashcode)
+        public Person(string fullName, DateTime birthDay, string placeOfBirth, string passportId)
         {
             if (fullName == "" || birthDay == null || placeOfBirth == "" || passportId == "")
                 throw new NullReferenceException("All fields must be filled");
@@ -33,10 +26,9 @@ namespace Objects.People
             BirthDay = birthDay;
             PlaceOfBirth = placeOfBirth;
             PassportId = passportId;
-            _hashCode = hashcode;
         }
 
-        
+
         public void ChangeFullName(string fullName)
         {
             FullName = fullName;
@@ -52,50 +44,50 @@ namespace Objects.People
 
         public static Person GenerateRandomPerson()
         {
-            var name = new string[]
+            var name = new[]
             {
                 "Август", "Иван", "Борис", "Николай", "Григорий",
                 "Михаил", "Андрей", "Никита", "Дмитрий", "Олег",
                 "Анастасия", "Екатерина", "Кристина", "Наталья", "Надежда",
                 "Дарья", "Елена", "Жанна", "Зоя", "Инга",
             };
-            var lastname = new string[]
+            var lastname = new[]
             {
                 "Иванов", "Борисов", "Николаев", "Григорьев", "Денисов",
                 "Михайлов", "Андреев", "Германов", "Дмитриев", "Олегов",
                 "Макаров", "Львов", "Карлов", "Захаров", "Евгениев",
                 "Михеев", "Моисеев", "Назаров", "Павлов", "Петров"
             };
-            var surname = new string[]
+            var surname = new[]
             {
                 "Иванов", "Смирнов", "Кузнецов", "Попов", "Васильев",
                 "Петров", "Соколов", "Михайлов", "Новиков", "Федоров",
                 "Морозов", "Волков", "Алексеев", "Лебедев", "Семенов",
                 "Егоров", "Павлов", "Козлов", "Степанов", "Орлов"
             };
-            var cities = new string[] {"Москва", "Киев", "Тирасполь", "Орел", "Краснодар"};
+            var cities = new[] {"Москва", "Киев", "Тирасполь", "Орел", "Краснодар"};
             var fullname = "";
-            switch (rn.Next(0, 2)) //0 - male 1-female
+            switch (Rn.Next(0, 2)) //0 - male 1-female
             {
                 case 0:
                 {
-                    fullname = surname[rn.Next(0, surname.Length)] +" "+ name[rn.Next(0, name.Length / 2 + 1)] + " " +
-                               lastname[rn.Next(0, lastname.Length)] +
+                    fullname = surname[Rn.Next(0, surname.Length)] + " " + name[Rn.Next(0, name.Length / 2 + 1)] + " " +
+                               lastname[Rn.Next(0, lastname.Length)] +
                                "ич";
                     break;
                 }
                 case 1:
                 {
-                    fullname = surname[rn.Next(0, surname.Length)] + "а " + name[rn.Next(11, name.Length)] + " " +
-                               lastname[rn.Next(0, lastname.Length)] +
+                    fullname = surname[Rn.Next(0, surname.Length)] + "а " + name[Rn.Next(11, name.Length)] + " " +
+                               lastname[Rn.Next(0, lastname.Length)] +
                                "на";
                     break;
                 }
             }
 
-            var birthdate = new DateTime(1985 + rn.Next(-15, 16), rn.Next(1, 13), rn.Next(1, 29));
-            var placeOfBirth = cities[rn.Next(0, cities.Length)];
-            var passportId = "АА " + rn.Next(0, 10) + rn.Next(100000, 999999);
+            var birthdate = new DateTime(1985 + Rn.Next(-15, 16), Rn.Next(1, 13), Rn.Next(1, 29));
+            var placeOfBirth = cities[Rn.Next(0, cities.Length)];
+            var passportId = "АА " + Rn.Next(0, 10) + Rn.Next(100000, 999999);
             return new Person(fullname, birthdate, placeOfBirth, passportId);
         }
 
@@ -106,6 +98,9 @@ namespace Objects.People
             if (!(obj is Person))
                 return false;
             var person = (Person) obj;
+            if (PassportId == person.PassportId && !(FullName == person.FullName && BirthDay == person.BirthDay &&
+                                                     PlaceOfBirth == person.PlaceOfBirth))
+                throw new ArgumentException("Passport number must be unique");
             return (FullName == person.FullName && BirthDay == person.BirthDay && PlaceOfBirth == person.PlaceOfBirth &&
                     PassportId == person.PassportId);
         }
@@ -118,12 +113,12 @@ namespace Objects.People
 
         public override int GetHashCode()
         {
-            return _hashCode.GetHashCode(PassportId);
+            return PassportId.GetHashCode();
         }
 
         public Person Clone()
         {
-            var person = new Person(FullName, BirthDay, PlaceOfBirth, PassportId, _hashCode);
+            var person = new Person(FullName, BirthDay, PlaceOfBirth, PassportId);
             return person;
         }
     }

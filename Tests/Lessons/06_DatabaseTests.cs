@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
@@ -8,42 +6,37 @@ using Objects.People;
 namespace Tests.Lessons
 {
     [TestFixture]
-    public class DatabaseTests
+    public class _06_DatabaseTests
     {
-        private readonly PeopleDatabase _database = new PeopleDatabase();
-        private const int Length = 10;
 
-        private static void FillDatabase(PeopleDatabase data)
+        private static PeopleDatabase GetDatabase()
         {
-            if (data.Count == Length) return;
-            for (var i = data.Count; i < Length; i++)
+            var data=new PeopleDatabase();
+            for (var i = data.Count; i < 10; i++)
             {
                 data.Add(Person.GenerateRandomPerson());
             }
-        }
 
-        private void FillDatabase()
-        {
-            FillDatabase(_database);
+            return data;
         }
 
         [Test]
         public void AddRemoveTest()
         {
-            FillDatabase();
-            Assert.AreEqual(Length, _database.Count);
-            _database.Remove();
-            _database.Remove();
-            Assert.AreEqual(Length - 2, _database.Count);
+            var database = GetDatabase();
+            database.Remove();
+            database.Remove();
+            Assert.AreEqual(database.Count - 2, database.Count);
         }
 
         [Test]
         public void SaveLoadTest()
         {
-            FillDatabase();
-            _database.Save();
-            _database.Load(Directory.GetCurrentDirectory() + @"/PersonCatalog.txt");
-            Assert.AreEqual(Length, _database.Count);
+            var database = GetDatabase();
+            var length = database.Count;
+            database.Save();
+            database.Load(Directory.GetCurrentDirectory() + @"/PersonDatabase.txt");
+            Assert.AreEqual(length, database.Count);
         }
 
 
@@ -65,8 +58,7 @@ namespace Tests.Lessons
         [Test]
         public void HtmlDatabaseTest()
         {
-            var database = new PeopleDatabase();
-            FillDatabase(database);
+            var database = GetDatabase();
             database.HtmlFile();
             using (var fileStream = File.OpenRead(Directory.GetCurrentDirectory() +
                                                   @"/database.html"))

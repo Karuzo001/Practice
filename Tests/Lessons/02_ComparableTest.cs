@@ -6,16 +6,14 @@ using Objects;
 namespace Tests.Lessons
 {
     [TestFixture]
-    public class ComparableTest
+    public class _02_ComparableTest
     {
         private readonly Figures _figures = new Figures(15);
 
         [Test]
         public void SortByAreaTest()
         {
-            //act
             var figuresSorted = _figures.BaseFigures.OrderBy(figure => figure).ToArray();
-            //test
             for (var index = figuresSorted.Length - 1; index > 0; index--)
             {
                 if (figuresSorted[index - 1].Area() > figuresSorted[index].Area())
@@ -32,9 +30,7 @@ namespace Tests.Lessons
         [Test]
         public void SortByPerimeterTest()
         {
-            //act
             Array.Sort(_figures.BaseFigures, BaseFigure.SortPerimeter());
-            //test
             for (var index = _figures.BaseFigures.Length - 1; index > 0; index--)
             {
                 if (_figures.BaseFigures[index - 1].Perimeter() > _figures.BaseFigures[index].Perimeter())

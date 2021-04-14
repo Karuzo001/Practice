@@ -4,7 +4,7 @@ using Objects;
 
 namespace Tests.Tasks
 {
-    public class EnumerableTest
+    public class _07_EnumerableTest
     {
         private readonly BaseFigure[] _figures = new BaseFigure[10];
         private bool _flag;

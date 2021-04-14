@@ -45,7 +45,7 @@
         <Compile Include="Lessons\02_ComparableTest.cs" />
         <Compile Include="Lessons\03_GetHashCodeTests.cs" />
         <Compile Include="Lessons\04_GenericTypeTests.cs" />
-        <Compile Include="Lessons\05_MyDelegate.cs" />
+        <Compile Include="Lessons\05_MyDelegateTest.cs" />
         <Compile Include="Lessons\06_DatabaseTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Tasks\03_OOPTest.cs" />

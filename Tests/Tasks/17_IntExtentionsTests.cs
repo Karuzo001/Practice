@@ -5,7 +5,7 @@ using Objects;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class IntExtentionsTests
+    public class _17_IntExtensionsTests
     {
         private enum TimeType {MilliSeconds,Seconds,Minutes,Hours,Days}
         private TimeSpan TimeGenerator (TimeType time)
@@ -28,6 +28,7 @@ namespace Tests.Tasks
         {
             var t = TimeGenerator(TimeType.MilliSeconds);
             Console.WriteLine(t);
+            Console.WriteLine(1.Minutes());
             Assert.IsNotNull(t);
         }
     }

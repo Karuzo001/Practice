@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using NUnit.Framework;
 using Objects;
@@ -10,14 +7,13 @@ using Objects.People;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class GenericType
+    public class _12_GenericType
     {
         [Test]
         public void GenerateCollectionUniquePersonsTest()
         {
             const int countOfElements = 100;
             var uniqueCollection = new UniqueCollection<Person>();
-
             for (var i = 0; i < countOfElements; i++)
             {
                 var p = new Person();
@@ -25,9 +21,11 @@ namespace Tests.Tasks
                     p = new Person();
                 uniqueCollection.Add(p);
             }
+
             Assert.AreEqual(countOfElements, uniqueCollection.Count);
             CollectionAssert.AllItemsAreUnique(uniqueCollection);
         }
+
         [Test]
         public void GenerateCollectionWithNotUniquePersonsTest()
         {
@@ -37,8 +35,9 @@ namespace Tests.Tasks
             {
                 uniqueCollection.Add(new Person());
             }
+
             Assert.Throws<ArgumentException>(() => uniqueCollection.Add(uniqueCollection.First()));
-            Assert.AreEqual(countOfElements,  uniqueCollection.Count);
+            Assert.AreEqual(countOfElements, uniqueCollection.Count);
             CollectionAssert.AllItemsAreUnique(uniqueCollection);
         }
     }

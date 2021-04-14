@@ -6,7 +6,7 @@ using Objects.People;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class ListAndDictionary
+    public class _11ListAndDictionary
     {
         private readonly List<Person> _people = new List<Person>
         {
@@ -19,12 +19,12 @@ namespace Tests.Tasks
         public void DictionaryTest()
         {
             var database = new PersonCatalog();
-            database.Add(_people[0],"123 321");
+            database.Add(_people[0], "123 321");
             database.Add(_people[1]);
-           Console.WriteLine(database.Search(_people[0]));
-           Console.WriteLine(database.Search(_people[1]));
-           Console.WriteLine(database.Search(_people[2]));
-           Console.WriteLine("\nDatabase:\n"+database);
+            Console.WriteLine(database.Search(_people[0]));
+            Console.WriteLine(database.Search(_people[1]));
+            Console.WriteLine(database.Search(_people[2]));
+            Console.WriteLine("\nDatabase:\n" + database);
         }
     }
 }

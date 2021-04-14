@@ -1,42 +1,36 @@
 using System;
 using NUnit.Framework;
 using Objects;
-using Objects.Collections;
 
 namespace Tests.Lessons
 {
     [TestFixture]
-    public class GenericTypeTests
+    public class _04_GenericTypeTests
     {
-        private FiguresCollection<Triangle> _collection = new FiguresCollection<Triangle>(15);
-        Random rn = new Random();
-
         [Test]
-        public void SortByAreaTest()
+        public void DoublePointCovarianceTest()
         {
-            for (var i = 0; i < _collection.Length; i++)
-            {
-                _collection.Collection[i] = Triangle.GenerateRandomFigure(rn);
-            }
+            var random = new Random();
+            var triangle = new DoublerPointOut<Triangle>(Triangle.GenerateRandomFigure(random));
             string message = null;
-            _collection.FiguresAreSorted += delegate(string notify) { message = notify; };
-            _collection.SortByArea();
-            
-            Assert.AreEqual(message,"Figures sorted by area.");
+            triangle.PointDoubler += delegate(string notify) { message = notify; };
+            IDoublerPointOut<Figure> doublerPointOut = triangle;
+            doublerPointOut.Double();
+            Assert.IsNotNull(message);
+            Assert.AreEqual("The coordinates of the point doubts.", message);
         }
 
         [Test]
-        public void SortByPerimeterTest()
+        public void DoublePointContrVarianceTest()
         {
-            for (var i = 0; i < _collection.Length; i++)
-            {
-                _collection.Collection[i] = Triangle.GenerateRandomFigure(rn);
-            }
-
+            var random = new Random();
+            var triangle = new DoublerPointOut<Figure>(Triangle.GenerateRandomFigure(random));
             string message = null;
-            _collection.FiguresAreSorted += delegate(string notify) { message = notify; };
-            _collection.SortByPerimeter();
-            Assert.AreEqual(message,"Figures are sorted by perimeter.");
+            triangle.PointDoubler += delegate(string notify) { message = notify; };
+            IDoublerPointIn<Triangle> doublerPoint = triangle;
+            doublerPoint.Double();
+            Assert.IsNotNull(message);
+            Assert.AreEqual("The coordinates of the point doubts.", message);
         }
     }
 }

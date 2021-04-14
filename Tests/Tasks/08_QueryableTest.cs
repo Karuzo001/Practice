@@ -5,7 +5,7 @@ using Objects;
 
 namespace Tests.Tasks
 {
-    public class QueryableTest
+    public class _08_QueryableTest
     {//prepare
         private readonly Figures _figures = new Figures(15);
 

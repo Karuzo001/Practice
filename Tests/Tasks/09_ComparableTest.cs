@@ -4,7 +4,7 @@ using Objects;
 
 namespace Tests.Tasks
 {
-    public class ComparableTest
+    public class _09_ComparableTest
     {
         [Test]
         public void WorkTest()

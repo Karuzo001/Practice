@@ -5,7 +5,7 @@ using Objects;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class OopTests
+    public class _03_OopTests
     {
         [Test]
         public void WorkTest()

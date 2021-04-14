@@ -6,11 +6,12 @@ namespace Objects
 {
     public abstract class Figure : BaseFigure
     {
-        protected Point[] Points;
-        protected double[] SidesLength;
+        public Point[] Points { get; protected set; }
+        public double[] SidesLength{ get; set; }
 
         protected Figure(IReadOnlyList<Point> points)
         {
+            if (points == null) throw new ArgumentNullException(nameof(points));
             Points = new Point[points.Count];
             for (var i = points.Count - 1; i > -1; i--)
             {
@@ -44,7 +45,7 @@ namespace Objects
             return info;
         }
 
-        protected static double[] GetSidesLength(IReadOnlyList<Point> points)
+        public static double[] GetSidesLength(IReadOnlyList<Point> points)
         {
             if (points == null) throw new ArgumentNullException(nameof(points));
             var sides = new double[points.Count];

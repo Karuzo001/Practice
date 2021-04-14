@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Objects.People;
@@ -6,7 +5,7 @@ using Objects.People;
 namespace Tests.Tasks
 {
     [TestFixture]
-    public class EqualTest
+    public class _10_EqualTest
     {
         private readonly List<Person> _people = new List<Person>
         {

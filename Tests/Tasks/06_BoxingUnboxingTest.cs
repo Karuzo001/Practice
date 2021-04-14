@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Tests.Tasks
 {
-    public class BoxingUnboxingTest
+    public class _06_BoxingUnboxingTest
     {
         [Test]
         public void TimeTest()

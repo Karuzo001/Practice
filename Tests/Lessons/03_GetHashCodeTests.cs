@@ -2,58 +2,107 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
-using Objects.People;
+using Objects;
 
 namespace Tests.Lessons
 {
     [TestFixture]
-    public class GetHashCodeTests
+    public class _03_GetHashCodeTests
     {
-        private readonly List<Person> _people = new List<Person>
-        {
-            new Person("Ivanov Ivan Ivanovich", new DateTime(1973, 04, 25), "Tiraspol", "1-ПР № 3295761"),
-            new Person("Petrov Petr Petrovich", new DateTime(1985, 02, 13), "Moscow", "1-ПР № 1155167",
-                new GetHashCodeStatic())
-        };
 
-        private readonly int[] _countOfRepetitions = {100, 10000, 100000};
-
-        [Test]
-        public void GetHashCodeDynamicTest()
+        private class StaticHashCode : ICloneable<StaticHashCode>
         {
-            for (var number = 0; number < 3; number++)
+            public override int GetHashCode()
             {
-                var people = new List<Person>();
-                var sw = new Stopwatch();
-                sw.Start();
-                for (var index = 0; index < _countOfRepetitions[number]; index++)
-                {
-                    people.Add(_people[0]);
-                }
+                return 0;
+            }
 
-                sw.Stop();
-                Console.WriteLine(
-                    $"Number of repetitions: {_countOfRepetitions[number]}\nNumber of Ticks: {sw.ElapsedTicks}\n");
+            public StaticHashCode Clone()
+            {
+                return new StaticHashCode();
+            }
+        }
+
+        private class DynamicHashCode : ICloneable<DynamicHashCode>
+        {
+            public DynamicHashCode Clone()
+            {
+                return new DynamicHashCode();
             }
         }
 
         [Test]
-        public void GetHashCodeStaticTest()
+        [TestCase(1000)]
+        [TestCase(10000)]
+        [TestCase(100000)]
+        public void GetHashCodeTest(int count)
         {
-            for (var number = 0; number < 3; number++)
-            {
-                var people = new Dictionary<int, Person>();
-                var sw = new Stopwatch();
-                sw.Start();
-                for (var index = 0; index < _countOfRepetitions[number]; index++)
-                {
-                    people.Add(index, _people[1]);
-                }
+            Console.WriteLine($"Number of repetitions: {count}");
+            Console.WriteLine(
+                $"HashCode Dynamic: {GetLeadTime(count, new DynamicHashCode()).ElapsedMilliseconds} ticks");
+            Console.WriteLine($"HashCode Static: {GetLeadTime(count, new StaticHashCode()).ElapsedMilliseconds} ticks");
+        }
 
-                sw.Stop();
-                Console.WriteLine(
-                    $"Number of repetitions: {_countOfRepetitions[number]}\nNumber of Ticks: {sw.ElapsedTicks}\n");
+        private static Stopwatch GetLeadTime(int count, DynamicHashCode baseHashCode)
+        {
+            return GetLeadTimeHelper2(GetLeadTimeHelper(count, baseHashCode));
+        }
+
+        private static Stopwatch GetLeadTime(int count, StaticHashCode baseHashCode)
+        {
+            return GetLeadTimeHelper2(GetLeadTimeHelper(count, baseHashCode));
+        }
+
+        private static Stopwatch GetLeadTimeHelper2(IEnumerable<DynamicHashCode> hashCode)
+        {
+            var people = new Dictionary<object, string>();
+            var sw = new Stopwatch();
+            sw.Start();
+            foreach (var item in hashCode)
+            {
+                people.Add(item, "");
             }
+
+            sw.Stop();
+            return sw;
+        }
+
+        private static Stopwatch GetLeadTimeHelper2(IEnumerable<StaticHashCode> hashCode)
+        {
+            var people = new Dictionary<object, string>();
+            var sw = new Stopwatch();
+            sw.Start();
+            foreach (var item in hashCode)
+            {
+                people.Add(item, "");
+            }
+
+            sw.Stop();
+            return sw;
+        }
+
+        private static DynamicHashCode[] GetLeadTimeHelper(int count, DynamicHashCode baseHashCode)
+        {
+            var hashCode = new DynamicHashCode[count];
+
+            for (var i = 0; i < count; i++)
+            {
+                hashCode[i] = baseHashCode.Clone();
+            }
+
+            return hashCode;
+        }
+
+        private static StaticHashCode[] GetLeadTimeHelper(int count, StaticHashCode baseHashCode)
+        {
+            var hashCode = new StaticHashCode[count];
+
+            for (var i = 0; i < count; i++)
+            {
+                hashCode[i] = baseHashCode.Clone();
+            }
+
+            return hashCode;
         }
     }
 }
