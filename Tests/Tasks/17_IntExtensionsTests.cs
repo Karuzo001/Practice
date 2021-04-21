@@ -8,7 +8,7 @@ namespace Tests.Tasks
     public class _17_IntExtensionsTests
     {
         private enum TimeType {MilliSeconds,Seconds,Minutes,Hours,Days}
-        private TimeSpan TimeGenerator (TimeType time)
+        private static TimeSpan TimeGenerator (TimeType time)
         {
             var rand = new Random();
             var value = rand.Next(0, 10000000);

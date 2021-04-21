@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -10,11 +9,11 @@ namespace Objects.MyDelegate
         private ParameterInfo[] _parameters;
         private Type _returnType;
 
-        public ParametersAndType(IReadOnlyList<ParameterInfo> parameters, Type returnType)
+        public ParametersAndType(ParameterInfo[] parameters, Type returnType)
         {
             if (parameters == null) throw new ArgumentNullException();
-            _parameters = new ParameterInfo[parameters.Count];
-            for (var i = 0; i < parameters.Count; i++)
+            _parameters = new ParameterInfo[parameters.Length];
+            for (var i = 0; i < parameters.Length; i++)
             {
                 _parameters[i] = parameters[i];
             }

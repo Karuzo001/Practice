@@ -2,7 +2,7 @@ using System;
 
 namespace Objects
 {
-    public static class IntExtentions
+    public static class IntExtensions
     {
         public static TimeSpan MilliSeconds(this int number)
         {

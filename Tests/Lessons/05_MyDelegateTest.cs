@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using NUnit.Framework;
-using Objects;
 using Objects.MyDelegate;
 
 namespace Tests.Lessons
@@ -45,6 +44,7 @@ namespace Tests.Lessons
             var myDelegate = new MyDelegate(addMethodInfo);
 
             var exceptionInfo = type.GetMethod(nameof(this.ExceptionMethod));
+            myDelegate -= myDelegate;
             myDelegate -= myDelegate;
             myDelegate += new MyDelegate(exceptionInfo);
             myDelegate += myDelegate;

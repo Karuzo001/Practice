@@ -57,7 +57,7 @@
         <Compile Include="Tasks\11_ListAndDictionaryTests.cs" />
         <Compile Include="Tasks\12_GenericTypeTests.cs" />
         <Compile Include="Tasks\14_EventsTests.cs" />
-        <Compile Include="Tasks\17_IntExtentionsTests.cs" />
+        <Compile Include="Tasks\17_IntExtensionsTests.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Objects\Objects.csproj">

@@ -11,22 +11,26 @@ namespace Tests.Lessons
 
         private static PeopleDatabase GetDatabase()
         {
-            var data=new PeopleDatabase();
-            for (var i = data.Count; i < 10; i++)
+            var database=new PeopleDatabase();
+            for (var i = database.Count; i < 10; i++)
             {
-                data.Add(Person.GenerateRandomPerson());
+                database.Add(Person.GenerateRandomPerson());
             }
 
-            return data;
+            return database;
         }
 
         [Test]
         public void AddRemoveTest()
         {
             var database = GetDatabase();
+            var length = database.Count;
             database.Remove();
             database.Remove();
-            Assert.AreEqual(database.Count - 2, database.Count);
+            database.Add(Person.GenerateRandomPerson());
+            database.Add(Person.GenerateRandomPerson());
+            database.Remove();
+            Assert.AreEqual(length-1, database.Count);
         }
 
         [Test]

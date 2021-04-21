@@ -63,15 +63,7 @@ namespace Objects.MyDelegate
 
         public static MyDelegate operator +(MyDelegate first, MyDelegate second)
         {
-            if (first == second)
-            {
-                var newList = new List<MethodInfo>();
-                newList = newList.Concat(first._methods).ToList();
-                first._methods = newList.Concat(first._methods).ToList();
-            }
-            else
-                first.Add(second);
-
+            first.Add(second);
             return first;
         }
 
