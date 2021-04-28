@@ -49,8 +49,7 @@ namespace Tests.Lessons
         {
             var p = Person.GenerateRandomPerson();
             p.HtmlFile();
-            using (var fileStream = File.OpenRead(Directory.GetCurrentDirectory() +
-                                                  @"/" + p.FullName + ".html"))
+            using (var fileStream = File.OpenRead(Path.Combine(Directory.GetCurrentDirectory(), p.FullName + ".html")))
             {
                 var htmlCode = new byte[fileStream.Length];
                 fileStream.Read(htmlCode, 0, htmlCode.Length);
@@ -64,8 +63,7 @@ namespace Tests.Lessons
         {
             var database = GetDatabase();
             database.HtmlFile();
-            using (var fileStream = File.OpenRead(Directory.GetCurrentDirectory() +
-                                                  @"/database.html"))
+            using (var fileStream = File.OpenRead(Path.Combine(Directory.GetCurrentDirectory(), "database.html")))
             {
                 var htmlCode = new byte[fileStream.Length];
                 fileStream.Read(htmlCode, 0, htmlCode.Length);

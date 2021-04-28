@@ -57,7 +57,7 @@
         <Compile Include="IntExtensions.cs" />
         <Compile Include="MyDelegate\MyDelegate.cs" />
         <Compile Include="MyDelegate\ParametersAndType.cs" />
-        <Compile Include="People\HtmlExtention.cs" />
+        <Compile Include="People\HtmlExtension.cs" />
         <Compile Include="People\PeopleDatabase.cs" />
         <Compile Include="People\Person.cs" />
         <Compile Include="People\PersonCatalog.cs" />

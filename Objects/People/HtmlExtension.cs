@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Objects.People
 {
-	public static class HtmlExtentions
+	public static class HtmlExtensions
 	{
 		public static void HtmlFile(this Person person)
 		{
@@ -38,25 +38,23 @@ namespace Objects.People
 	<td> Place of Birth </td>
 	<td> Passport ID </td>
 	</tr>";
-			foreach (var current in database.UsedPassportId)
+			foreach (var current in database.Database)
 			{
 				htmlFile += (@"<tr>
-			<td>" + database.Database[current].FullName + @"</td>
-			<td>" + database.Database[current].BirthDay.ToShortDateString() + @"</td>
-			<td>" + database.Database[current].PlaceOfBirth + @"</td>
-			<td>" + database.Database[current].PassportId + @"</td>
+			<td>" + current.Value.FullName + @"</td>
+			<td>" + current.Value.BirthDay.ToShortDateString() + @"</td>
+			<td>" + current.Value.PlaceOfBirth + @"</td>
+			<td>" + current.Value.PassportId + @"</td>
 			</tr>");
 			}
 
 			htmlFile += @"</table>
 	         </body>
 		</html>";
-			using (var file = File.Open(directory + @"/" + @"/" + name + ".html",
-				FileMode.OpenOrCreate))
-			{
-				var code = Encoding.Default.GetBytes(htmlFile);
-				file.Write(code, 0, code.Length);
-			}
+			using var file = File.Open(Path.Combine(directory,name + ".html"),
+				FileMode.OpenOrCreate);
+			var code = Encoding.Default.GetBytes(htmlFile);
+			file.Write(code, 0, code.Length);
 		}
 	}
 }

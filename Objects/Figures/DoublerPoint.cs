@@ -12,13 +12,13 @@ namespace Objects
         void Double();
         public delegate void FiguresNotifier(string notify);
     }
-    public class DoublerPointOut<T> : IDoublerPointOut<T>,IDoublerPointIn<T> where T : Figure
+    public class DoublerPoint<T> : IDoublerPointOut<T>,IDoublerPointIn<T> where T : Figure
     {
         private readonly T _figure;
         private readonly Random _rn = new Random();
         public delegate void FiguresNotifier(string notify);
         public event FiguresNotifier PointDoubler;
-        public DoublerPointOut(T figure)
+        public DoublerPoint(T figure)
         {
             _figure = figure ?? throw new ArgumentNullException(nameof(figure));
         }

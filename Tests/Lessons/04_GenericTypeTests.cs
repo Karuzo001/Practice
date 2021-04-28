@@ -11,7 +11,7 @@ namespace Tests.Lessons
         public void DoublePointCovarianceTest()
         {
             var random = new Random();
-            var triangle = new DoublerPointOut<Triangle>(Triangle.GenerateRandomFigure(random));
+            var triangle = new DoublerPoint<Triangle>(Triangle.GenerateRandomFigure(random));
             string message = null;
             triangle.PointDoubler += delegate(string notify) { message = notify; };
             IDoublerPointOut<Figure> doublerPointOut = triangle;
@@ -24,7 +24,7 @@ namespace Tests.Lessons
         public void DoublePointContrVarianceTest()
         {
             var random = new Random();
-            var triangle = new DoublerPointOut<Figure>(Triangle.GenerateRandomFigure(random));
+            var triangle = new DoublerPoint<Figure>(Triangle.GenerateRandomFigure(random));
             string message = null;
             triangle.PointDoubler += delegate(string notify) { message = notify; };
             IDoublerPointIn<Triangle> doublerPoint = triangle;
